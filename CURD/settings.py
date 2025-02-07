@@ -74,7 +74,7 @@ WSGI_APPLICATION = "CURD.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
+"""DATABASES = {
     "default": {
        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'curd',
@@ -83,7 +83,20 @@ DATABASES = {
         'HOST': 'localhost',  # Or your database server's IP
         'PORT': '3306',  
     }
+}"""
+import os
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.getenv('MYSQL_DATABASE'),
+        'USER': os.getenv('MYSQL_USER'),
+        'PASSWORD': os.getenv('MYSQL_PASSWORD'),
+        'HOST': os.getenv('MYSQL_HOST'),
+        'PORT': os.getenv('MYSQL_PORT', '3306'),
+    }
 }
+
 
 
 # Password validation
